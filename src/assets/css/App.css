@@ -1,3 +1,62 @@
 /* Main CSS file */
 
 @import '_example/_example.css';
+.chevron { 
+    display: flex;
+    position: relative; 
+    text-align: center; 
+    padding: 12px; 
+    margin-bottom: 6px; 
+    height: 20px;
+    width: 220px; 
+    margin-left: 200px;
+    margin-top: -20px;
+    justify-content: space-between;
+} 
+p{
+    margin-top: -7px;
+}
+.chevron:before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    height: 100%; 
+    width: 49%; 
+    background: transparent; 
+    transform: skew(0deg, 6deg); 
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
+} 
+.chevron:after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    height: 100%; 
+    width: 50%; 
+    background: transparent; 
+    transform: skew(0deg, -6deg);
+    border-top: 1px solid grey;
+    border-right: 1px solid grey;
+    border-bottom: 1px solid grey;
+ } 
+
+ .timer{
+    margin-left: 300px;
+    margin-top: 20px;
+ }
+.startBtn{
+    margin-left: 300px;
+}
+.waterDiv{
+    height: 40px;
+    margin-top: -53px;
+    margin-bottom: 14px;
+    width: 244px; 
+    margin-left: 200px;
+    background: rgba(25, 138, 230, 0.377);
+    -webkit-clip-path: polygon(100% 51%, 100% 75%, 49% 100%, 0 74%, 0 50%);
+    clip-path: polygon(100% 15%, 100% 67%, 49% 100%, 0 68%, 0 15%);
+}

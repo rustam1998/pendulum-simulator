@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
+import Title from './Title'
 import '../assets/css/App.css'
 
 let T = 10
 let V = 0;
-let angle = Math.PI*13/100;
+let angle = Math.PI*10.5/100;
 //Decrement
-const D = (Math.log(11) - Math.log(T)) / 2
+const D = (Math.log(11) - Math.log(6)) / 5
 const t = T / 350;
     //mass
-// const m = 5.5
+ const m = 5.5
 //     //сопротивление
-// const r = (2*m*D) / T
+ const r = (2*m*D) / 6
 //     //коэф. затухания
-// const b = r/(2*m)
-//console.log(b)
+ const b = r/(2*m)
+console.log(b)
 
 let id;
 
@@ -32,22 +33,22 @@ export default class pendMain extends Component {
   componentDidMount(){
     if(this.state.environment !== 'air' || 'water'){
       const context = this.refs.canvas.getContext("2d");
+     
+      context.fillStyle = "rgb(44, 45, 45)";
+      context.beginPath();
+      context.rect(320, 80, 4, 270);
+      context.fill();
+      context.stroke();
       
-      context.fillStyle = "grey";
       context.beginPath();
-      context.rect(320, 100, 4, 275);
+      context.arc(322, 300, 22, 0, Math.PI*2, false);
       context.fill();
       context.stroke();
- 
+      
       context.beginPath();
-      context.arc(322, 340, 20, 0, Math.PI*2, false);
-      context.fill();
-      context.stroke();
-    
-      context.beginPath();
-      context.moveTo(322,410);
-      context.lineTo(319.5,375);
-      context.lineTo(324.3,375);
+      context.moveTo(322,385);
+      context.lineTo(319.5,350);
+      context.lineTo(324.3,350);
       context.closePath();
       context.stroke();
     }
@@ -78,7 +79,7 @@ export default class pendMain extends Component {
   water = () =>{
     this.setState({environment: 'water'})
     // Изменяю сопротивление среды || changing resistance of the environment
-    this.setState({b: 0.02})
+    this.setState({b: 0.03})
     //добавляю воду || adding water
     this.setState({class: 'waterDiv'})
     // начало отсчета таймера || starting timer
@@ -113,26 +114,27 @@ export default class pendMain extends Component {
     //удаление предыдущего кадра|| removing previos frame
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    context.fillStyle = "rgba(255,255,255,0.91)";
+    context.fillStyle = "rgba(255,255,255,0.99)";
     context.fillRect(0, 0, canvas.width, canvas.height);
  
-    context.fillStyle = "grey";
+    context.fillStyle = "rgb(44, 45, 45)";
     //Наложение фигур друг на друга|| Overlay figures on each other
     context.globalCompositeOperation = "source-over";
  
     context.save();
-      context.translate(320, 100)
+      context.translate(320, 75)
       //изменение угла вращения || changing rotatiion angle
       context.rotate(angle);
 
       //Рисую фигуры || Drawing figures
+
       context.beginPath();
       context.rect(0, 0, 4, 275);
       context.fill();
       context.stroke();
- 
+
       context.beginPath();
-      context.arc(2, 240, 20, 0, Math.PI*2, false);
+      context.arc(2, 240, 23, 0, Math.PI*2, false);
       context.fill();
       context.stroke();
     
@@ -162,42 +164,51 @@ export default class pendMain extends Component {
     
     return (
       <div>
-        {
-          this.state.showBtns ?
-          <div>
-          <button onClick={this.air}>В воздухе</button>
-            <button onClick={this.water}>В воде</button>
-          </div> 
-          : 
-          <button onClick={this.reloadPage}>Обнулить</button>
-        }
-        <canvas id="canvas" width="700" height="420" ref="canvas"></canvas>
-        <div className={this.state.class}></div>
-        <div className="chevron">
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>0</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-          <p>|</p>
-        </div>
-
-        <div className="timer">
-            <span>{min}:</span>
-            <span>{sec}.</span>
-            <span>{msec}</span>
+        <Title/>
+        <div className='flex'>
+          <div className="sidebar">
+            <div className="bg-img"></div>
+            {
+              this.state.showBtns ?
+              <div className='sidebarBtns'>
+                <div className='airSim'>
+                  <img src={require('../assets/wind.png')} className='wind' alt=""/>
+                  <p onClick={this.air} className='airbtn'>Симуляция в воздухе</p>
+                </div>
+                <div className="airSim">
+                  <img src={require('../assets/drop.png')} className='drop' alt=""/>
+                  <p onClick={this.water} className='airbtn'>Симуляция в воде</p>
+                </div>
+              </div> 
+              : 
+              <div className="airSim">
+                <img src={require('../assets/reload.png')} className='reloadIcon' alt=""/>
+                <p onClick={this.reloadPage} className='airbtn reloadbtn'>Обнулить</p>
+              </div>
+            }
+          </div>
+          <div className="main">
+            <h1>{isRunning ? 'Чтобы остановить симуляцию нажмите на "Обнулить"' : "Добро пожаловать в симулятор затухающего маятника"}</h1>
+            <p className='second'>{isRunning ? '' : 'Пожалуйста, выберите нужную среду для симуляции в навигации'}</p>
+            <canvas id="canvas" width="700" height="420" ref="canvas"></canvas>
+            <div className={this.state.class}></div>
+            <img src={require('../assets/cm.png')} className='cm' alt=""/>
+            <div className="timer">
+              <div className='timerSpan'>
+                <span>{min < 10 ? '0' + min : min}:</span>
+                <span>{sec < 10 ? '0' + sec : sec}.</span>
+                <span>{msec}</span>
+              </div>
             </div>
-            <button onClick={this.toggle} className='startBtn'>
-              Stop
-            </button>
-       </div>
+            {this.state.isRunning ?
+              <button onClick={this.toggle} className='startBtn'>
+                | |
+              </button>
+            : '' 
+            }
+          </div>
+        </div>
+      </div>
     )
   }
 }

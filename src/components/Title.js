@@ -22,7 +22,7 @@ export default class Title extends Component {
     <div>
         <div className="title-bar">
             <div className="app-name-container">
-                <p>Pendulum Simulator</p>
+                <p>Определение логарифмического декремента</p>
             </div>
             <div className="window-controls-container">
                 <button id="minimize-button" className="minimize-button" onClick={this.onMinimize}/>

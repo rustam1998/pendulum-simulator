@@ -23,12 +23,15 @@ body{
   
   .app-name-container {
     margin-top: 12px;
-    margin-left: 12px;
+    margin-left: 11px;
     font-size: 12px;
     color: #ffffff;
     z-index: 100; 
+    
   }
-  
+  p{
+    letter-spacing: -0.15px
+  }
   .window-controls-container {
     position: relative;
     display: flex;

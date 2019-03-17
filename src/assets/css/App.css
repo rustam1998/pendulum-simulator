@@ -3,549 +3,296 @@
     display: flex;
 }
 
- @media screen and (max-width: 1920px) { 
-    @keyframes rightFadeInOut {
-        0% {
-            margin-left: -50px;
-            opacity: 0;
-        }
+ 
+.lowOpacity{
+    opacity: 0.5;
+}
+ 
+.main{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    z-index: 5;
+}
+canvas{
+    margin-left: 60px;
+    margin-top: -70px;
+    z-index: 10;
+        
+}
+@keyframes rightFadeInOut {
+    0% {
+        margin-left: -50px;
+        opacity: 0;
+    }
       
-        75% { 
-          opacity: 0.7;
+    75% { 
+        opacity: 0.7;
           
-        }
+    }
       
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes btnScale {
-        0% {
-            opacity: 1;
-        }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes btnScale {
+    0% {
+        opacity: 1;
+    }
     
-        50% { 
-          opacity: 0;
-          transform: scale(0.9);
-        }
+    50% { 
+        opacity: 0;
+        transform: scale(0.9);
+    }
       
-        100% {
-          opacity: 1;
-        }
-      }
-    .main{
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        z-index: 5;
+    100% {
+        opacity: 1;
     }
-    canvas{
-        margin-left: 400px;
-        margin-top: -40px;
-        z-index: 10;
-    }
-    h1{
-        font-size: 30px;
-        padding-left: 350px;
-        font-weight: 300;
-        margin-top: 85px;
-        z-index: 100;
-    }
-    .second{
-        margin-top: -10px;
-        padding-left: 350px;
-        font-size: 22px;
-        z-index: 11;
-    }
-    .sidebar{
-        height: 100vh;
-        min-width: 400px;
-        background: #000;
-    }
-    .bg-img{
-        height: 100vh;
-        background-image: url('../pendulum.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        transform: scaleX(-1);
-        filter: blur(30px) brightness(60%);
-        -webkit-filter: blur(44px)  brightness(70%)
-        
-    }
-    .sidebarBtns{
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        z-index: 2;
-    }
+}
+h1{
+    font-size: 22px;
+    padding-left: 110px;
+    font-weight: 300;
+    margin-top: 85px;
+    z-index: 100;
+}
     
-    .airSim{
-        display: flex;
-        align-items: center;
-    }
+.second{
+    margin-top: -10px;
+    padding-left: 110px;
+    font-size: 18px;
+    z-index: 11;
+}
+.sidebar{
+    height: 100vh;
+    min-width: 260px;
+    background: #000;
+}
+.bg-img{
+    height: 100vh;
+    background-image: url('../pendulum.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: scaleX(-1);
+    filter: blur(30px) brightness(60%);
+    -webkit-filter: blur(44px)  brightness(70%)   
+}
+.sidebarBtns{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
     
-    .reloadIcon{
-        position: absolute;
-        top: 95px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    .drop{
-        margin-top: -44px;
-        margin-right: 29px;
-        margin-left: 16px;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
+.airSim{
+    display: flex;
+    align-items: center;
+    width: 260px;
+    padding-top: 35px;
+    height: 0px;
+    margin-bottom: 20px;
     
-    .wind{
-        margin-top: -40px;
-        margin-right: 29px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    
-    .airbtn{
-        color: rgb(255, 255, 255);
-        padding-bottom: 20px;
-        font-size: 16px;
-        cursor: pointer;
-        animation-name: rightFadeInOut;
-        animation-duration: 2s;
-    }
-    
-    .reloadbtn{
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        left: 65px;
-        padding-top: 100px;
-    }
-    
-    
-    p{
-        margin-top: -7px;
-    }
-    
-    .cm{
-        width: 200px;
-        margin-left: 628px;
-        margin-top: -50px;
-        z-index: 11;
-    }
-    
-     .timer{
-        margin-left: 675px;
-        text-align: center;
-        margin-top: 40px;
-        color: white;
-        background: #00779F;
-        width: 110px;
-        height: 110px;
-        border-radius: 100%;
-     }
-    
-     .timerSpan{
-        font-size: 24px;
-        padding-top: 35px;
-     }
-    
-    .startBtn{
-        margin-left: 705px;
-        margin-top: 10px;
-        width: 50px;
-        height: 50px;
-        border-radius: 100%;
-        background: #00779F;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        
-    }
-    .startBtn:focus{
-        animation-name: btnScale;
-        animation-duration: 1s;
-    }
-    .waterDiv{
-        height: 40px;
-        margin-top: -53px;
-        margin-bottom: 14px;
-        width: 244px; 
-        margin-left: 600px;
-        background: rgba(25, 138, 230, 0.377);
-        -webkit-clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-        clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-        z-index: 13;
-    }
- }
+}
 
- @media screen and (max-width: 1400px) { 
-    @keyframes rightFadeInOut {
-        0% {
-            margin-left: -50px;
-            opacity: 0;
-        }
-      
-        75% { 
-          opacity: 0.7;
-          
-        }
-      
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes btnScale {
-        0% {
-            opacity: 1;
-        }
+.airSim:hover{
+    background: rgb(73, 73, 73);
+}
+.airSim:active{
+    background: rgb(73, 73, 73);
+}
+.drop{
+    margin-top: -44px;
+    margin-right: 29px;
+    margin-left: 16px;
+    animation-name: rightFadeInOut;
+    animation-duration: 3s;
+}
     
-        50% { 
-          opacity: 0;
-          transform: scale(0.9);
-        }
-      
-        100% {
-          opacity: 1;
-        }
-      }
-    .main{
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        z-index: 5;
-    }
-    canvas{
-        margin-left: 200px;
-        margin-top: -40px;
-        z-index: 10;
-    }
-    h1{
-        font-size: 28px;
-        padding-left: 180px;
-        font-weight: 300;
-        margin-top: 85px;
-        z-index: 100;
-    }
-    .second{
-        margin-top: -10px;
-        padding-left: 180px;
-        font-size: 20px;
-        z-index: 11;
-    }
-    .sidebar{
-        height: 100vh;
-        min-width: 320px;
-        background: #000;
-    }
-    .bg-img{
-        height: 100vh;
-        background-image: url('../pendulum.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        transform: scaleX(-1);
-        filter: blur(30px) brightness(60%);
-        -webkit-filter: blur(44px)  brightness(70%)
-        
-    }
-    .sidebarBtns{
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        z-index: 2;
-    }
+.wind{
+    margin-top: -40px;
+    margin-right: 29px;
+    margin-left: 16px;
+    z-index: 10;
+    animation-name: rightFadeInOut;
+    animation-duration: 3s;
+}
     
-    .airSim{
-        display: flex;
-        align-items: center;
-    }
+.airbtn{
+    color: rgb(255, 255, 255);
+    margin-top: -20px;
+    padding-bottom: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    animation-name: rightFadeInOut;
+    animation-duration: 2s;
+}
     
-    .reloadIcon{
-        position: absolute;
-        top: 95px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    .drop{
-        margin-top: -44px;
-        margin-right: 29px;
-        margin-left: 16px;
-        animation-name: rightFadeInOut;
-        animation-duration: 2s;
-    }
+p{
+    margin-top: -7px;
+}
+.sidebarInputs{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+label{
+    color: #fff;
+    margin-left: 16px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    animation-name: rightFadeInOut;
+    animation-duration: 3s;
+    width: 160px;
+}
+input{
+    margin-left: 16px;
+    height: 20px;
+    width: 155px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.493);
+    color: #fff;
+    border: 1px solid gray;
+    border-radius: 2px;
+    animation-name: rightFadeInOut;
+    animation-duration: 3s;
+}
+input::placeholder{
+    color: #fff;
+    font-size: 16px;
+}
+.warnP{
+    color: #fff;
+    font-size: 12px;
+    width: 160px;
+    margin-left: 16px;
+}
+.cm{
+    width: 290px;
+    margin-left: 236px;
+    margin-top: -58px;
+    z-index: 11;
+}
     
-    .wind{
-        margin-top: -40px;
-        margin-right: 29px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
+.timer{
+    margin-left: 333px;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    background: #00779F;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
     
-    .airbtn{
-        color: rgb(255, 255, 255);
-        padding-bottom: 20px;
-        font-size: 16px;
-        cursor: pointer;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    
-    .reloadbtn{
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        left: 65px;
-        padding-top: 100px;
-    }
-    
-    
-    p{
-        margin-top: -7px;
-    }
-    
-    .cm{
-        width: 200px;
-        margin-left: 421px;
-        margin-top: -50px;
-        z-index: 11;
-    }
-    
-     .timer{
-        margin-left: 473px;
-        text-align: center;
-        margin-top: 40px;
-        color: white;
-        background: #00779F;
-        width: 100px;
-        height: 100px;
-        border-radius: 100%;
-     }
-    
-     .timerSpan{
-        font-size: 24px;
-        padding-top: 35px;
-     }
-    
-    .startBtn{
-        margin-left: 500px;
-        margin-top: 10px;
-        width: 45px;
-        height: 45px;
-        border-radius: 100%;
-        background: #00779F;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    .startBtn:focus{
-        animation-name: btnScale;
-        animation-duration: 1s;
-    }
-    .waterDiv{
-        height: 40px;
-        margin-top: -53px;
-        margin-bottom: 14px;
-        width: 244px; 
-        margin-left: 393px;
-        background: rgba(25, 138, 230, 0.377);
-        -webkit-clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-        clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-    }
- }
+.timerSpan{
+    font-size: 24px;
+    padding-top: 35px;
+}
+.reloadAndStartDiv{
+    margin-left: 335px;
+    display: flex;
+    margin-top: 10px;
+}
+.reload{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: #00779F;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.reload:focus{
+    animation-name: btnScale;
+    animation-duration: 1s;
+}
 
- @media screen and (max-width: 1024px) { 
-    .main{
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        z-index: 5;
-    }
-    canvas{
-        margin-left: 60px;
-        margin-top: -70px;
-        z-index: 10;
-        
-    }
-    @keyframes rightFadeInOut {
-        0% {
-            margin-left: -50px;
-            opacity: 0;
-        }
-      
-        75% { 
-          opacity: 0.7;
-          
-        }
-      
-        100% {
-          opacity: 1;
-        }
-      }
-      @keyframes btnScale {
-        0% {
-            opacity: 1;
-        }
-    
-        50% { 
-          opacity: 0;
-          transform: scale(0.9);
-        }
-      
-        100% {
-          opacity: 1;
-        }
-      }
-    h1{
-        font-size: 22px;
-        padding-left: 110px;
-        font-weight: 300;
-        margin-top: 85px;
-        z-index: 100;
-    }
-    
-    .second{
-        margin-top: -10px;
-        padding-left: 110px;
-        font-size: 18px;
-        z-index: 11;
-    }
-    .sidebar{
-        height: 100vh;
-        min-width: 260px;
-        background: #000;
-    }
-    .bg-img{
-        height: 100vh;
-        background-image: url('../pendulum.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        transform: scaleX(-1);
-        filter: blur(30px) brightness(60%);
-        -webkit-filter: blur(44px)  brightness(70%)
-        
-    }
-    .sidebarBtns{
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding-top: 100px;
-        display: flex;
-        flex-direction: column;
-        z-index: 2;
-    }
-    
-    .airSim{
-        display: flex;
-        align-items: center;
-    }
-    
-    .reloadIcon{
-        position: absolute;
-        top: 95px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    .drop{
-        margin-top: -44px;
-        margin-right: 29px;
-        margin-left: 16px;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    
-    .wind{
-        margin-top: -40px;
-        margin-right: 29px;
-        margin-left: 16px;
-        z-index: 10;
-        animation-name: rightFadeInOut;
-        animation-duration: 3s;
-    }
-    
-    .airbtn{
-        color: rgb(255, 255, 255);
-        padding-bottom: 20px;
-        font-size: 14px;
-        cursor: pointer;
-        animation-name: rightFadeInOut;
-        animation-duration: 2s;
-    }
-    
-    .reloadbtn{
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        left: 65px;
-        padding-top: 100px;
-    }
-    
-    
-    p{
-        margin-top: -7px;
-    }
-    
-    .cm{
-        width: 200px;
-        margin-left: 281.5px;
-        margin-top: -50px;
-        z-index: 11;
-    }
-    
-     .timer{
-        margin-left: 333px;
-        text-align: center;
-        margin-top: 20px;
-        color: white;
-        background: #00779F;
-        width: 100px;
-        height: 100px;
-        border-radius: 100%;
-     }
-    
-     .timerSpan{
-        font-size: 24px;
-        padding-top: 35px;
-     }
-    
-    .startBtn{
-        margin-left: 360px;
-        margin-top: 10px;
-        width: 45px;
-        height: 45px;
-        border-radius: 100%;
-        background: #00779F;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    .startBtn:focus{
-        animation-name: btnScale;
-        animation-duration: 1s;
-    }
-    .waterDiv{
-        height: 40px;
-        margin-top: -53px;
-        margin-bottom: 14px;
-        width: 244px; 
-        margin-left: 254px;
-        background: rgba(25, 138, 230, 0.377);
-        -webkit-clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-        clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 68% 49%, 52% 52%, 37% 48%, 24% 36%, 11% 18%, 12% 0);
-    }
+.startBtn{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background: #00779F;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 8px;
+}
+.startBtn:focus{
+    animation-name: btnScale;
+    animation-duration: 1s;
+}
+.waterDiv{
+    height: 40px;
+    margin-top: -60px;
+    margin-bottom: 20px;
+    width: 355px; 
+    margin-left: 195px;
+    background: rgba(25, 138, 230, 0.377);
+    clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 55% 69%, 30% 52%, 27% 48%, 24% 36%, 11% 8%, 12% 0);
+    clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 55% 69%, 30% 52%, 27% 48%, 24% 36%, 11% 8%, 12% 0);
+    z-index: 100;
+}
+
+.numbersDiv{
+     display: flex;
+     margin-left: 233px;
+     z-index: 100;
  }
+ .p1{
+     margin-top: -27px;
+     font-size:16px;
+ }
+ .p2{
+    margin-top: -20px;
+    font-size:16px;
+    margin-left: 14px;
+ }
+ .p3{
+    margin-top: -14px;
+    font-size:16px;
+    margin-left: 15px;
+ }
+ .p4{
+    margin-top: -10px;
+    font-size:16px;
+    margin-left: 15px;
+ }
+ .p5{
+    margin-top: -6px;
+    font-size:16px;
+    margin-left: 16px;
+ }
+ .p6{
+    margin-top: -4px;
+    font-size:16px;
+    margin-left: 16px;
+ }
+ .p7{
+    margin-top: -4px;
+    font-size: 22px;
+    margin-left: 14px;
+    font-weight: bold;
+ }
+ .p12{
+    margin-top: -20px;
+    font-size:16px;
+    margin-left: 17px;
+ }
+ .p13{
+    margin-top: -27px;
+    margin-left: 11px;
+    font-size: 16px;
+}
+
+.triangle{
+    background: rgb(143, 143, 143);
+    z-index: 120;
+    width: 30px;
+    height: 17px;
+    margin-left: 368px;
+    margin-bottom: -30px;
+}

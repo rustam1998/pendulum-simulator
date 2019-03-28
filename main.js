@@ -30,7 +30,8 @@ function createWindow() {
     height: 768,
     show: false,
     frame: false,
-    resizable:false  
+    resizable:false,
+    icon: path.join(__dirname, '/src/icons')  
   })
 
   // and load the index.html of the app.

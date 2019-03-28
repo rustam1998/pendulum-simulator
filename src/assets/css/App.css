@@ -16,8 +16,8 @@
 }
 canvas{
     margin-left: 60px;
-    margin-top: -70px;
-    z-index: 10;
+    margin-top: -80px;
+    z-index: -100;
         
 }
 @keyframes rightFadeInOut {
@@ -53,7 +53,7 @@ h1{
     font-size: 22px;
     padding-left: 110px;
     font-weight: 300;
-    margin-top: 85px;
+    margin-top: 30px;
     z-index: 100;
 }
     
@@ -138,32 +138,35 @@ p{
     display: flex;
     flex-direction: column;
     z-index: 2;
+    animation-name: rightFadeInOut;
+    animation-duration: 3s;
+    margin-top: -30px;
 }
 label{
     color: #fff;
     margin-left: 16px;
     font-size: 12px;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     animation-name: rightFadeInOut;
     animation-duration: 3s;
     width: 160px;
 }
+
 input{
     margin-left: 16px;
     height: 20px;
     width: 155px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     background: rgba(0, 0, 0, 0.493);
     color: #fff;
     border: 1px solid gray;
     border-radius: 2px;
-    animation-name: rightFadeInOut;
-    animation-duration: 3s;
 }
 input::placeholder{
     color: #fff;
     font-size: 16px;
 }
+
 .warnP{
     color: #fff;
     font-size: 12px;
@@ -171,9 +174,9 @@ input::placeholder{
     margin-left: 16px;
 }
 .cm{
-    width: 290px;
-    margin-left: 236px;
-    margin-top: -58px;
+    width: 450px;
+    margin-left: 157px;
+    margin-top: -35px;
     z-index: 11;
 }
     
@@ -193,9 +196,9 @@ input::placeholder{
     padding-top: 35px;
 }
 .reloadAndStartDiv{
-    margin-left: 335px;
+    margin-left: 331px;
     display: flex;
-    margin-top: 10px;
+    margin-top: -70px;
 }
 .reload{
     width: 45px;
@@ -205,6 +208,8 @@ input::placeholder{
     border: none;
     color: #fff;
     cursor: pointer;
+    z-index: 120;
+    margin-left: -46px;
 }
 .reload:focus{
     animation-name: btnScale;
@@ -219,21 +224,49 @@ input::placeholder{
     border: none;
     color: #fff;
     cursor: pointer;
-    margin-left: 8px;
+    margin-left: 106px;
+    
+    z-index: 120;
 }
 .startBtn:focus{
     animation-name: btnScale;
     animation-duration: 1s;
 }
 .waterDiv{
-    height: 40px;
-    margin-top: -60px;
-    margin-bottom: 20px;
-    width: 355px; 
-    margin-left: 195px;
+    height: 105px;
+    border-top: 1px solid rgb(156, 156, 156);
+    border-right: 1px solid rgb(156, 156, 156);
+    border-left: 1px solid rgb(156, 156, 156);
+    margin-top: -105px;
+    width: 448px; 
+    margin-left: 157px;
     background: rgba(25, 138, 230, 0.377);
-    clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 55% 69%, 30% 52%, 27% 48%, 24% 36%, 11% 8%, 12% 0);
-    clip-path: polygon(50% 0, 93% 0, 93% 15%, 80% 38%, 55% 69%, 30% 52%, 27% 48%, 24% 36%, 11% 8%, 12% 0);
+    clip-path: polygon(0 0, 100% 0, 100% 67%, 93% 76%, 85% 86%, 52% 109%, 22% 92%, 7% 77%, 0 67%);
+    z-index: 100;
+}
+.kerosinDiv{
+    height: 105px;
+    margin-top: -106px;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    width: 448px; 
+    margin-left: 157px;
+    background: rgba(245, 241, 0, 0.363);
+    clip-path: polygon(0 0, 100% 0, 100% 67%, 93% 76%, 85% 86%, 52% 109%, 22% 92%, 7% 75%, 0 67%);
+    z-index: 100;
+}
+
+.mercuryDiv{
+    border-top: 1px solid rgb(184, 184, 184);
+    border-right: 1px solid rgb(156, 156, 156);
+    border-left: 1px solid rgb(156, 156, 156);
+    height: 105px;
+    margin-top: -105px;
+    width: 447px; 
+    margin-left: 157px;
+    background: rgba(68, 68, 68, 0.377);
+    clip-path: polygon(0 0, 100% 0, 100% 67%, 93% 76%, 85% 86%, 52% 109%, 22% 92%, 7% 77%, 0 67%);
     z-index: 100;
 }
 
@@ -242,57 +275,74 @@ input::placeholder{
      margin-left: 233px;
      z-index: 100;
  }
- .p1{
-     margin-top: -27px;
-     font-size:16px;
- }
+
  .p2{
-    margin-top: -20px;
-    font-size:16px;
-    margin-left: 14px;
+    margin-top: -75px;
+    font-size:22px;
+    margin-left: -44px;
  }
  .p3{
-    margin-top: -14px;
-    font-size:16px;
-    margin-left: 15px;
+    margin-top: -65px;
+    font-size:22px;
+    margin-left: 20px;
  }
  .p4{
-    margin-top: -10px;
-    font-size:16px;
-    margin-left: 15px;
+    margin-top: -58px;
+    font-size:22px;
+    margin-left: 28px;
  }
  .p5{
-    margin-top: -6px;
-    font-size:16px;
-    margin-left: 16px;
+    margin-top: -50px;
+    font-size:22px;
+    margin-left: 24px;
  }
  .p6{
-    margin-top: -4px;
-    font-size:16px;
-    margin-left: 16px;
+    margin-top: -47px;
+    font-size:22px;
+    margin-left: 27px;
  }
  .p7{
     margin-top: -4px;
-    font-size: 22px;
-    margin-left: 14px;
+    font-size: 24px;
+    margin-left: 27.5px;
     font-weight: bold;
  }
- .p12{
-    margin-top: -20px;
-    font-size:16px;
-    margin-left: 17px;
+ .p8{
+    margin-top: -47px;
+    font-size: 22px;
+    margin-left: 27.5px;
  }
- .p13{
-    margin-top: -27px;
-    margin-left: 11px;
-    font-size: 16px;
-}
-
+ .p9{
+    margin-top: -65px;
+    font-size:22px;
+    margin-left: 25px;
+ }
+ .p12{
+    margin-top: -75px;
+    font-size:22px;
+    margin-left: 28px;
+ }
+ 
 .triangle{
     background: rgb(143, 143, 143);
     z-index: 120;
-    width: 30px;
-    height: 17px;
-    margin-left: 368px;
-    margin-bottom: -30px;
+    width: 40px;
+    height: 25px;
+    -webkit-clip-path: polygon(100% 0, 0 0, 50% 100%);
+    clip-path: polygon(100% 0, 0 0, 50% 100%);
+    margin-left: 362px;
+    margin-bottom: -50px;
+    margin-top: 15px;
+    -webkit-box-shadow: 0px -3px 55px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -3px 55px -17px rgba(0,0,0,0.75);
+    box-shadow: 0px -3px 55px -17px rgba(0,0,0,0.75);
+}
+.labels{
+    font-size: 16px;
+    margin-top: 5px;
+}
+.slider{
+    position: relative;
+    z-index: 300;
+    width: 200px
 }

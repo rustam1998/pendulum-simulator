@@ -6,16 +6,9 @@ export default class Title extends Component {
     onMinimize = () => {
         remote.getCurrentWindow().minimize()
     }
-    onMinMax = () => {
-        const currentWindow = remote.getCurrentWindow()
-        if(currentWindow.isMaximized()) {
-            currentWindow.unmaximize()
-        } else {
-            currentWindow.maximize()
-        }
-    }
     onClose = () => {
         remote.app.quit()
+        window.localStorage.clear();
     }
   render() {
     return (
@@ -26,7 +19,6 @@ export default class Title extends Component {
             </div>
             <div className="window-controls-container">
                 <button id="minimize-button" className="minimize-button" onClick={this.onMinimize}/>
-                <button id="min-max-button" className="min-max-button" onClick={this.onMinMax}/>
                 <button id="close-button" className="close-button" onClick={this.onClose}/>
             </div>
         </div>

@@ -8,20 +8,20 @@ import '../assets/css/App.css'
 const customStyles = {
   control: (base, state) => ({
     ...base,
-    background: "rgba(0, 0, 0, 0.493)",
+    background: "rgba(255, 255, 255, 0.89)",
     // match with the menu
-    borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+    borderRadius: state.isFocused ? "3px" : 3,
     // Overwrittes the different states of border
-    borderColor: 'gray',
+    borderColor: 'transparent',
     // Removes weird border around container
     boxShadow: state.isFocused ? null : null,
     minHeight: '25px', 
     height: '25px',
-    fontSize: '14px',
+    fontSize: '16px',
     marginBottom: '20px',
     marginTop: '10px',
     marginLeft: '16px',
-    color: 'white'
+    color: '#000'
   }),
   menu: base => ({
     ...base,
@@ -84,14 +84,19 @@ class pendMain extends Component {
       roEnv: isNaN(fromLocalStorage('roEnv')) ? 0 : fromLocalStorage('roEnv'),
       beta: 0,
       w: 0,
-      class: ''
+      class: '',
+      disableInputs: false
     }
   
   //Рисую маятник до начала движения || Drawing pendulum before rotating
    componentDidMount(){
-     this.PendulumSim1()
+     this.drawCanvas()
    }
- 
+   componentDidUpdate(previos){
+     if (previos.roSphChange !== this.state.roSphChange) {
+      this.drawCanvas()
+     }
+   }
   //Обновить страницу || reload page  
   reloadPage = () => {
     window.location.reload();
@@ -109,6 +114,7 @@ class pendMain extends Component {
   //начало и остановка анимации и таймера || Stopping timer and animation
   toggle = () => {
        // начало отсчета таймера || starting timer
+    this.setState({disableInputs: true})
     this.setState({isRunning: !this.state.isRunning}, () => {
         this.state.isRunning ? this.startTimer() : clearInterval(this.timer),
         this.state.isRunning ? requestAnimationFrame(this.PendulumSim) : cancelAnimationFrame(id)
@@ -135,19 +141,41 @@ class pendMain extends Component {
     let Ist = (7/48) * massSt * Math.pow(lst , 2)
     let Isph = massSph * Math.pow(l1 , 2)
     let I = Ist + Isph
-    let T = (2 * Math.PI) * Math.sqrt(I/(m * 9.8*l2))
+    let T = (2 * Math.PI) * Math.sqrt(I/(m * 9.8*l2)) 
 
     let D = Math.sqrt((this.state.nu * Math.pow(10, -6))*Math.PI*this.state.roEnv*T) * (this.state.S/m) +0.002
+    console.log(D)
     this.setState({beta: D/T })
-    this.setState({w: (2*Math.PI) / T})
+    this.setState({w: (2*Math.PI) / T - 2.9})
   } 
-  PendulumSim1 = () => {
+
+  drawCanvas = () => {
     const canvas = this.refs.canvas
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "rgba(255,255,255,0.99)";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.fillStyle = "rgb(44, 45, 45)";
+    
+    context.beginPath();
+    context.fillStyle = "rgb(39, 39, 39)";
+    context.rect(282, 110, 80, 12);
+    context.fill();
+    
+    if (this.state.roStChange.value === 'aluminium') {
+      context.fillStyle = "rgb(184, 184, 184)";
+    } 
+    else if(this.state.roStChange.value === 'steel') {
+     context.fillStyle = "rgb(112,112,112)";
+    }
+    else if(this.state.roStChange.value === 'cuprum') {
+      context.fillStyle = "#8d5322";
+     }
+     else if(this.state.roStChange.value === 'plumbum') {
+      context.fillStyle = "#2e2e2e";
+     }
+     else{
+      context.fillStyle = "#000000";
+     }
     
     context.globalCompositeOperation = "source-over";
     context.save();
@@ -166,11 +194,29 @@ class pendMain extends Component {
       context.stroke();
 
       context.beginPath();
-      context.rect(-33, 0, 70, 5);
+      context.fillStyle = "grey";
+      context.moveTo(2,15);
+      context.lineTo(-16,-5);
+      context.lineTo(18,-5);
+      context.closePath();
       context.fill();
-      context.stroke();
 
       context.beginPath();
+      if (this.state.roSphChange.value === 'aluminium') {
+        context.fillStyle = "rgb(184, 184, 184)";
+      } 
+      else if(this.state.roSphChange.value === 'steel') {
+       context.fillStyle = "rgb(112,112,112)";
+      }
+      else if(this.state.roSphChange.value === 'cuprum') {
+        context.fillStyle = "#8d5322";
+       }
+       else if(this.state.roSphChange.value === 'plumbum') {
+        context.fillStyle = "#2e2e2e";
+       }
+       else{
+        context.fillStyle = "#000000";
+       }
       context.arc(2, 250, 30, 0, Math.PI*2, false);
       context.fill();
       context.stroke();
@@ -185,89 +231,11 @@ class pendMain extends Component {
   
     t += 0.01
     x = 0.5 * Math.pow(Math.E, (-this.state.beta * t)) * Math.sin(this.state.w* t + fi)
-}
+  }
   
   //отрисовка движущегося маятника || drawing a moving pendulum
   PendulumSim = () => {
-      const canvas = this.refs.canvas
-      const context = canvas.getContext("2d");
-      //удаление предыдущего кадра|| removing previos frame
-      context.clearRect(0, 0, canvas.width, canvas.height);
-  
-      context.fillStyle = "rgba(255,255,255)";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      //context.fillStyle = "rgb(44, 45, 45)";
-      if (this.state.roStChange.value === 'aluminium') {
-        context.fillStyle = "rgb(184, 184, 184)";
-      } 
-      else if(this.state.roStChange.value === 'steel') {
-       context.fillStyle = "rgb(112,112,112)";
-      }
-      else if(this.state.roStChange.value === 'cuprum') {
-        context.fillStyle = "#8d5322";
-       }
-       else if(this.state.roStChange.value === 'plumbum') {
-        context.fillStyle = "#2e2e2e";
-       }
-       else{
-        context.fillStyle = "#000000";
-       }
-      //Наложение фигур друг на друга|| Overlay figures on each other
-      context.globalCompositeOperation = "source-over";
-   
-      context.save();
-      
-        context.translate(320, 110)
-        //изменение угла вращения || changing rotatiion angle
-        context.rotate(x);
-  
-        //Рисую фигуры || Drawing figures
-        context.beginPath();
-        context.rect(0, -35, 4, 43);
-        context.fill();
-        context.stroke();
-  
-        context.beginPath();
-        context.rect(0, 0, 4, 380);
-        context.fill();
-        context.stroke();
-  
-        context.beginPath();
-        context.rect(-33, 0, 70, 5);
-        context.fill();
-        context.stroke();
-  
-        context.beginPath();
-        if (this.state.roSphChange.value === 'aluminium') {
-          context.fillStyle = "rgb(184, 184, 184)";
-        } 
-        else if(this.state.roSphChange.value === 'steel') {
-         context.fillStyle = "rgb(112,112,112)";
-        }
-        else if(this.state.roSphChange.value === 'cuprum') {
-          context.fillStyle = "#8d5322";
-         }
-         else if(this.state.roSphChange.value === 'plumbum') {
-          context.fillStyle = "#2e2e2e";
-         }
-         else{
-          context.fillStyle = "#000000";
-         }
-        context.arc(2, 250, 30, 0, Math.PI*2, false);
-        context.fill();
-        context.stroke();
-      
-        context.beginPath();
-        context.moveTo(2,450);
-        context.lineTo(-0.5,380);
-        context.lineTo(4,380);
-        context.closePath();
-        context.stroke();
-      context.restore();
-    
-      t += 0.03
-      x = 0.5 * Math.pow(Math.E, (-this.state.beta * t)) * Math.sin(this.state.w* t + fi)
-      
+      this.drawCanvas()
       id = requestAnimationFrame(this.PendulumSim)
   }
   
@@ -280,6 +248,7 @@ class pendMain extends Component {
   }
   roStChange = (roStChange) => {
     this.setState({roStChange})
+
     if (roStChange.value === 'aluminium') {
       this.setState({roSt: 2700 })
     }
@@ -329,10 +298,12 @@ class pendMain extends Component {
     if (environment.value === 'air') {
         this.setState({nu: 1.87  })
         this.setState({roEnv: 1.2 })
+        this.setState({class: '' })
     }
     if (environment.value === 'CO2') {
       this.setState({nu: 0.85 })
       this.setState({roEnv: 1.9768 })
+      this.setState({class: '' })
     }
     if (environment.value === 'water') {
       this.setState({nu: 1000 })
@@ -381,6 +352,7 @@ class pendMain extends Component {
                         max="2"
                         onChange={this.lstChange}
                         step='0.15'
+                        disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Диаметр стержня, d(м):</label>
                       <label>{this.state.diametr}</label>
@@ -391,10 +363,11 @@ class pendMain extends Component {
                         max="0.06"
                         onChange={this.diametrChange}
                         step='0.005'
+                        disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Материал стержня:</label>
                       <Select
-                      isDisabled={this.state.isRunning !== false}
+                      isDisabled={this.state.disableInputs !== false}
                       styles={customStyles}
                       value={this.state.roChange} 
                       onChange={this.roStChange}
@@ -422,6 +395,7 @@ class pendMain extends Component {
                         max="0.15"
                         onChange={this.radiusChange}
                         step='0.005'
+                        disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Расстояние от точки подвеса, l1(м):</label>
                       <label>{this.state.l1}</label>
@@ -432,10 +406,11 @@ class pendMain extends Component {
                         max={((3/4)*this.state.lst) - this.state.R}
                         onChange={this.l1Change}
                         step='0.005'
+                        disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Mатериал груза:</label>
                       <Select
-                      isDisabled={this.state.isRunning !== false}
+                      isDisabled={this.state.disableInputs !== false}
                       styles={customStyles}
                       value={this.state.roChange} 
                       onChange={this.roSphChange}
@@ -455,13 +430,13 @@ class pendMain extends Component {
                       
                       <label className='labels'><strong> Среда:</strong></label>
                       <Select
-                      isDisabled={this.state.isRunning !== false}
+                      isDisabled={this.state.disableInputs !== false}
                       styles={customStyles}
                       value={ environment} 
                       onChange={this.envGasChange}
                       options={optionsGas}
                       className="select"
-                      placeholder='Среда'
+                      placeholder=''
                       theme={(theme) => ({
                         ...theme,
                         borderRadius: 0,
@@ -481,6 +456,7 @@ class pendMain extends Component {
                         max='0.05'
                         onChange={this.Schange}
                         step='0.005'
+                        disabled={this.state.disableInputs !== false}
                       />
                      
                     </div>

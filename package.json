@@ -30,7 +30,7 @@
     "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
     "build": "webpack --config webpack.build.config.js --mode production",
     "package": "npm run build",
-    "postpackage": "electron-packager . --out=./builds --overwrite --platform=darwin --arch=x64 --icon=src/icons/mac/icon.icns --prune=true",
+    "postpackage": "electron-packager ./ --out=./builds --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/icons/win/icon.ico",
     "package-mac": "electron-packager . --out=./builds --overwrite --platform=darwin --arch=x64 --prune=true",
     "package-win": "electron-packager ./ --out=./builds --overwrite --asar=true --platform=win32 --arch=x64"
   },
@@ -39,7 +39,6 @@
     "electron-packager": "^13.1.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-   
     "react-router-dom": "^4.3.1",
     "react-select": "^2.4.2"
   },

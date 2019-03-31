@@ -72,15 +72,15 @@ class pendMain extends Component {
       roSphChange:'',
       lapTimes: [],
       timeElapsed: 0,
-      lst: isNaN(fromLocalStorage('lst')) ? 0 : fromLocalStorage('lst') ,
+      lst: isNaN(fromLocalStorage('lst')) ? 0.5 : fromLocalStorage('lst') ,
       showBtns: true,
-      l1: isNaN(fromLocalStorage('l1')) ? 0 : fromLocalStorage('l1'),
+      l1: isNaN(fromLocalStorage('l1')) ? 0.01 : fromLocalStorage('l1'),
       roSt: isNaN(fromLocalStorage('roSt')) ? 0 : fromLocalStorage('roSt'),
       roSph: isNaN(fromLocalStorage('roSph')) ? 0 : fromLocalStorage('roSph'),
-      diametr: isNaN(fromLocalStorage('diametr')) ? 0 : fromLocalStorage('diametr'),
-      R: isNaN(fromLocalStorage('R')) ? 0 : fromLocalStorage('R'),
+      diametr: isNaN(fromLocalStorage('diametr')) ? 0.01 : fromLocalStorage('diametr'),
+      R: isNaN(fromLocalStorage('R')) ? 0.01 : fromLocalStorage('R'),
       nu: isNaN(fromLocalStorage('nu')) ? 0 : fromLocalStorage('nu'),
-      S: isNaN(fromLocalStorage('S')) ? 0 : fromLocalStorage('S'),
+      S: isNaN(fromLocalStorage('S')) ? 0.005 : fromLocalStorage('S'),
       roEnv: isNaN(fromLocalStorage('roEnv')) ? 0 : fromLocalStorage('roEnv'),
       beta: 0,
       w: 0,
@@ -346,12 +346,12 @@ class pendMain extends Component {
                       <label htmlFor="mass">Длина стержня, lст(м):</label>
                       <label>{this.state.lst}</label>
                       <input 
-                        id="typeinp" 
                         type="range" 
+                        onChange={this.lstChange}
                         min="0.5" 
                         max="2"
-                        onChange={this.lstChange}
                         step='0.15'
+                        value={this.state.lst}
                         disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Диаметр стержня, d(м):</label>
@@ -363,6 +363,7 @@ class pendMain extends Component {
                         max="0.06"
                         onChange={this.diametrChange}
                         step='0.005'
+                        value={this.state.diametr}
                         disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Материал стержня:</label>
@@ -395,6 +396,7 @@ class pendMain extends Component {
                         max="0.15"
                         onChange={this.radiusChange}
                         step='0.005'
+                        value={this.state.R}
                         disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Расстояние от точки подвеса, l1(м):</label>
@@ -406,6 +408,7 @@ class pendMain extends Component {
                         max={((3/4)*this.state.lst) - this.state.R}
                         onChange={this.l1Change}
                         step='0.005'
+                        value={this.state.l1}
                         disabled={this.state.disableInputs !== false}
                       />
                       <label htmlFor="mass">Mатериал груза:</label>
@@ -456,6 +459,7 @@ class pendMain extends Component {
                         max='0.05'
                         onChange={this.Schange}
                         step='0.005'
+                        value={this.state.S}
                         disabled={this.state.disableInputs !== false}
                       />
                      
@@ -463,12 +467,10 @@ class pendMain extends Component {
                   </div>
           </div>
           <div className="main">
-            <h1>{isRunning ? 'Чтобы остановить симуляцию нажмите на кнопку паузы' : "Добро пожаловать в симулятор затухающего маятника"}</h1>
-            <p className='second'>{isRunning ? 'Чтобы выбрать другую среду, нажмите на соответсвующую кнопку в меню' : 'Вы можете настроить параметры симуляции в меню слева'}</p>
-            
             <div className='triangle'></div>
             <canvas id="canvas" width="700" height="550" ref="canvas"></canvas>
             <div className={this.state.class}></div>
+            <div className='borders'></div>
             <img src={require('../assets/cm.png')} className='cm' alt=""/>
             <div className="timer">
               <div className='timerSpan'>

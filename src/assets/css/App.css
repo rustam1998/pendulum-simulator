@@ -16,7 +16,6 @@
 }
 canvas{
     margin-left: 60px;
-    margin-top: -80px;
     z-index: -100;
         
 }
@@ -173,6 +172,17 @@ input::placeholder{
     width: 160px;
     margin-left: 16px;
 }
+
+.borders{
+    width: 446px;
+    margin-left: 157px;
+    border-left: 2px solid rgb(85, 85, 85);
+    border-right: 2px solid rgb(85, 85, 85);
+    height: 72px;
+    margin-bottom: 33px;
+    margin-top: -107px;
+}
+
 .cm{
     width: 450px;
     margin-left: 157px;
@@ -234,26 +244,20 @@ input::placeholder{
 }
 .waterDiv{
     height: 105px;
-    border-top: 1px solid rgb(156, 156, 156);
-    border-right: 1px solid rgb(156, 156, 156);
-    border-left: 1px solid rgb(156, 156, 156);
-    margin-top: -106px;
-    width: 448px; 
-    margin-left: 157px;
+    margin-top: -105px;
+    width: 445px; 
+    margin-left: 160px;
     background: rgba(69, 170, 252, 0.377);
-    clip-path: polygon(0 0, 100% 0, 100% 67%, 93% 76%, 85% 86%, 55% 108%, 20% 92%, 7% 77%, 0 67%);
+    clip-path: polygon(0 0, 100% 0, 100% 66%, 91% 76%, 86% 84%, 48% 108%, 24% 92%, 7% 77%, 0 67%);
     z-index: 100;
 }
 .kerosinDiv{
     height: 105px;
-    margin-top: -106px;
-    border-top: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
-    width: 448px; 
-    margin-left: 157px;
+    margin-top: -105px;
+    width: 445px; 
+    margin-left: 160px;
     background: rgba(245, 241, 0, 0.363);
-    clip-path: polygon(0 0, 100% 0, 100% 67%, 93% 76%, 85% 86%, 55% 108%, 20% 92%, 7% 77%, 0 67%);
+    clip-path: polygon(0 0, 100% 0, 100% 66%, 91% 76%, 86% 84%, 48% 108%, 24% 92%, 7% 77%, 0 67%);
     z-index: 100;
 }
 

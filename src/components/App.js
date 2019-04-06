@@ -67,9 +67,18 @@ class pendMain extends Component {
   state ={
       isRunning: false,
       value: 0,
-      environment: '',
-      roStChange:'',
-      roSphChange:'',
+      environment: {
+        value: window.localStorage.getItem('environmentValue') === '' ? '' :  window.localStorage.getItem('environmentValue'), 
+        label: window.localStorage.getItem('environmentLabel') === '' ? '' :  window.localStorage.getItem('environmentLabel')
+      },
+      roStChange: {
+        value: window.localStorage.getItem('roStValue') === '' ? '' :  window.localStorage.getItem('roStValue'), 
+        label: window.localStorage.getItem('roStLabel') === '' ? '' :  window.localStorage.getItem('roStLabel')
+      },
+      roSphChange: {
+        value: window.localStorage.getItem('roSphValue') === '' ? '' :  window.localStorage.getItem('roSphValue'), 
+        label: window.localStorage.getItem('roSphLabel') === '' ? '' :  window.localStorage.getItem('roSphLabel')
+      },
       lapTimes: [],
       timeElapsed: 0,
       lst: isNaN(fromLocalStorage('lst')) ? 0.5 : fromLocalStorage('lst') ,
@@ -90,6 +99,15 @@ class pendMain extends Component {
   
   //Рисую маятник до начала движения || Drawing pendulum before rotating
    componentDidMount(){
+    if (this.state.environment.value === 'water') {
+      this.setState({class: 'waterDiv' })
+    }
+    else if(this.state.environment.value === 'kerosin') {
+      this.setState({class: 'kerosinDiv' })
+    }
+    else{
+      this.setState({class: '' })
+    }
      this.drawCanvas()
    }
    componentDidUpdate(previos){
@@ -109,6 +127,12 @@ class pendMain extends Component {
     window.localStorage.setItem('nu', this.state.nu.toString());
     window.localStorage.setItem('S', this.state.S.toString());
     window.localStorage.setItem('roEnv', this.state.roEnv.toString());
+    window.localStorage.setItem('environmentValue', this.state.environment.value);
+    window.localStorage.setItem('environmentLabel', this.state.environment.label);
+    window.localStorage.setItem('roStValue', this.state.roStChange.value);
+    window.localStorage.setItem('roStLabel', this.state.roStChange.label);
+    window.localStorage.setItem('roSphValue', this.state.roSphChange.value);
+    window.localStorage.setItem('roSphLabel', this.state.roSphChange.label);
   }
   
   //начало и остановка анимации и таймера || Stopping timer and animation
@@ -144,7 +168,7 @@ class pendMain extends Component {
     let T = (2 * Math.PI) * Math.sqrt(I/(m * 9.8*l2)) 
 
     let D = Math.sqrt((this.state.nu * Math.pow(10, -6))*Math.PI*this.state.roEnv*T) * (this.state.S/m) +0.002
-    console.log(D)
+   
     this.setState({beta: D/T })
     this.setState({w: (2*Math.PI) / T - 2.9})
   } 
@@ -246,7 +270,7 @@ class pendMain extends Component {
   diametrChange = (e) => {
     this.setState({diametr: e.target.value })
   }
-  roStChange = (roStChange) => {
+  onRoStChange = (roStChange) => {
     this.setState({roStChange})
 
     if (roStChange.value === 'aluminium') {
@@ -268,7 +292,7 @@ class pendMain extends Component {
   l1Change = (e) => {
     this.setState({l1: e.target.value })
   }
-  roSphChange = (roSphChange) => {
+  onRoSphChange = (roSphChange) => {
     this.setState({roSphChange})
     if (roSphChange.value === 'aluminium') {
       this.setState({roSph: 2700 })
@@ -333,6 +357,7 @@ class pendMain extends Component {
     let min = Math.floor(seconds / 60).toString()
     let sec =  Math.floor(seconds % 60).toString()
     let msec = (seconds % 1).toFixed(2).substring(2)
+   
     return (
       <div>
         <Title/>
@@ -370,8 +395,8 @@ class pendMain extends Component {
                       <Select
                       isDisabled={this.state.disableInputs !== false}
                       styles={customStyles}
-                      value={this.state.roChange} 
-                      onChange={this.roStChange}
+                      value={this.state.roStChange} 
+                      onChange={this.onRoStChange}
                       options={optionsRo}
                       className="select"
                       placeholder=''
@@ -415,8 +440,8 @@ class pendMain extends Component {
                       <Select
                       isDisabled={this.state.disableInputs !== false}
                       styles={customStyles}
-                      value={this.state.roChange} 
-                      onChange={this.roSphChange}
+                      value={this.state.roSphChange} 
+                      onChange={this.onRoSphChange}
                       options={optionsRo}
                       className="select"
                       placeholder=''

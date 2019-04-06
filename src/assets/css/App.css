@@ -16,7 +16,7 @@
 }
 canvas{
     margin-left: 60px;
-    z-index: -100;
+    z-index: -200;
         
 }
 @keyframes rightFadeInOut {
@@ -187,7 +187,7 @@ input::placeholder{
     width: 450px;
     margin-left: 157px;
     margin-top: -35px;
-    z-index: 11;
+    z-index: 999;
 }
     
 .timer{
